@@ -47,6 +47,7 @@ def performDockerBuildPush(config) {
     echo apps.toString()
     for (app in apps) {
         echo "[INFO] Processing Docker build for: ${app.key}"
+        echo "[INFO] Image name: ${app.value}"
         dockerBuildPush(config)
     }
 }

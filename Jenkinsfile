@@ -52,9 +52,7 @@ def performDockerBuildPush(config) {
     }
 }
 
-def dockerBuildPush(config, path, image) {
-    def path = config.dockerBuild.key
-    def imageName = config.dockerBuild.value
+def dockerBuildPush(config, path, imageName) {
     def repository = config.repository
     def tag = config.tag
 

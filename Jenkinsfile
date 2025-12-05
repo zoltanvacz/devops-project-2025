@@ -48,11 +48,11 @@ def performDockerBuildPush(config) {
     for (app in apps) {
         echo "[INFO] Processing Docker build for: ${app.key}"
         echo "[INFO] Image name: ${app.value}"
-        dockerBuildPush(config)
+        dockerBuildPush(config, app.key, app.value)
     }
 }
 
-def dockerBuildPush(config) {
+def dockerBuildPush(config, path, image) {
     def path = config.dockerBuild.key
     def imageName = config.dockerBuild.value
     def repository = config.repository

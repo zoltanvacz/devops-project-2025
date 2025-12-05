@@ -44,6 +44,7 @@ pipeline {
 
 def performDockerBuildPush(config) {
     def apps = config.dockerBuild
+    echo apps.toString()
     for (app in apps) {
         echo "[INFO] Processing Docker build for: ${app.key}"
         dockerBuildPush(config)

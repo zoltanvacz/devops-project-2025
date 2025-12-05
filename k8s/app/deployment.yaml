@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: devops-app:latest
+        image: zoltanvacz/devops-app:latest
         imagePullPolicy: Never
         ports:
           - containerPort: 5000

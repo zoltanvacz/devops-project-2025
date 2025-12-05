@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: devops-nginx:latest
+          image: zoltanvacz/devops-nginx:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 80

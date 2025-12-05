@@ -1,0 +1,17 @@
+Start minikube cluster
+minikube start
+
+Expose minikube ingress
+sudo minikube tunnel
+
+Expose Prometheus service
+minikube service prometheus --url -n devops-demo
+
+Expose Grafana service
+minikube service grafana --url -n devops-demo
+
+Deploy k8s steps
+1. Build image
+2. Push image to registry
+3. Clone repo in k8s cluster
+4. Apply k8s resources

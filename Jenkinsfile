@@ -11,6 +11,8 @@ pipeline {
                     config.dockerBuild      = ["app": "devops-app", "nginx": "devops-nginx"]
                     config.repository       = "zoltanvacz"
                     config.tag              = "latest"
+                    config.deployK8s        = ["devops-app": "app", "devops-nginx": "nginx", "devops-db": "postgres"]
+                    config.newDeployment    = false
                 }
             }
         }
@@ -42,6 +44,9 @@ pipeline {
     }
 }
 
+
+//Methods
+//Build methods
 def performDockerBuildPush(config) {
     def apps = config.dockerBuild
     apps.each { key, value ->
@@ -68,4 +73,18 @@ def dockerBuildPush(config, path, imageName) {
             echo "[ERROR] Docker build or push failed: ${err}"
         }
     }
+}
+
+//K8s apply methods
+def deployK8s(config) {
+    def deployments = config.deployK8s
+
+    if (config.newDeployment) {
+        sh "kubectl apply -f ./k8s"
+    }
+    deployments.each { key, value ->
+        echo "[INFO] Deploying to K8s: ${key}"
+        def path = value
+        sh "kubectl apply -f ./k8s/${path}"
+    }   
 }

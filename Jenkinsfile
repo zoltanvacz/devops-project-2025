@@ -1,5 +1,8 @@
 def config = [:]
 
+cleanWs()
+checkout scm
+
 pipeline {
     agent any
     stages {

@@ -1,8 +1,5 @@
 def config = [:]
 
-cleanWs()
-checkout scm
-
 pipeline {
     agent any
     stages {
@@ -41,6 +38,7 @@ pipeline {
                 script {
                     echo 'Deploying the application...'
                     // Add deploy steps here
+                    deployK8s(config)
                 }
             }
         }
